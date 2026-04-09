@@ -1,0 +1,80 @@
+type Timestamp = int;
+type SubjectId = nat;
+type Subject = 
+ record {
+   color: text;
+   id: SubjectId;
+   name: text;
+ };
+type StudyStats = 
+ record {
+   completionRatePercent: nat;
+   sessionsToday: nat;
+   totalMinutesThisWeek: nat;
+ };
+type SessionId = nat;
+type ScheduledClass = 
+ record {
+   dayOfWeek: nat;
+   durationMinutes: nat;
+   id: ClassId;
+   startTime: text;
+   subjectId: SubjectId;
+ };
+type Priority = 
+ variant {
+   high;
+   low;
+   medium;
+ };
+type PomodoroSession = 
+ record {
+   assignmentId: opt AssignmentId;
+   completedAt: Timestamp;
+   durationMinutes: nat;
+   id: SessionId;
+   subjectId: opt SubjectId;
+ };
+type ClassId = nat;
+type AssignmentType = 
+ variant {
+   assignment;
+   exam;
+ };
+type AssignmentId = nat;
+type Assignment = 
+ record {
+   assignmentType: AssignmentType;
+   completedAt: opt Timestamp;
+   deadline: Timestamp;
+   description: text;
+   id: AssignmentId;
+   isComplete: bool;
+   priority: Priority;
+   subjectId: SubjectId;
+   title: text;
+   totalMinutesStudied: nat;
+ };
+service : {
+  createAssignment: (subjectId: SubjectId, title: text, description: 
+   text, deadline: Timestamp, assignmentType: AssignmentType, priority:
+   Priority) -> (Assignment);
+  createScheduledClass: (subjectId: SubjectId, dayOfWeek: nat, startTime:
+   text, durationMinutes: nat) -> (ScheduledClass);
+  createSubject: (name: text, color: text) -> (Subject);
+  deleteAssignment: (id: AssignmentId) -> (bool);
+  deleteScheduledClass: (id: ClassId) -> (bool);
+  deleteSubject: (id: SubjectId) -> (bool);
+  getAssignments: () -> (vec Assignment) query;
+  getPomodoroSessions: () -> (vec PomodoroSession) query;
+  getScheduledClasses: () -> (vec ScheduledClass) query;
+  getStudyStats: () -> (StudyStats) query;
+  getSubjects: () -> (vec Subject) query;
+  logPomodoroSession: (subjectId: opt SubjectId, assignmentId:
+   opt AssignmentId, durationMinutes: nat) -> (PomodoroSession);
+  markAssignmentComplete: (id: AssignmentId) -> (bool);
+  updateAssignment: (id: AssignmentId, title: text, description: text,
+   deadline: Timestamp, assignmentType: AssignmentType, priority:
+   Priority) -> (bool);
+  updateSubject: (id: SubjectId, name: text, color: text) -> (bool);
+}

@@ -1,0 +1,21 @@
+{
+  "overview": "StudyFlow is a smart study planner app that helps students manage their academic workload, track assignments and exams, visualize their schedule on a color-coded calendar, and stay focused with a built-in Pomodoro timer.",
+  "features": [
+    "Personal dashboard with today's schedule and upcoming deadlines",
+    "Subject and class management with color coding and recurring schedules",
+    "Assignment and exam tracking with deadlines and completion status",
+    "Pomodoro focus timer with auto-break scheduling and study time logging",
+    "Weekly and daily calendar views color-coded by subject",
+    "Study progress tracking with hours studied and completion rates"
+  ],
+  "category": "productivity",
+  "tags": [
+    "study-planner",
+    "productivity",
+    "pomodoro",
+    "calendar",
+    "assignments",
+    "academics"
+  ],
+  "last_updated": "2026-04-09T06:08:10.053Z"
+}

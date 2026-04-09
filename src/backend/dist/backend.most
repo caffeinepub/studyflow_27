@@ -1,0 +1,81 @@
+// Version: 1.0.0
+type AssignmentId__162244222 = Nat;
+type AssignmentId__365072893 = AssignmentId__162244222;
+type AssignmentId__981710525 = AssignmentId__162244222;
+type AssignmentType__464569949 = {#assignment; #exam};
+type Assignment__982879838 =
+  {
+    assignmentType : AssignmentType__464569949;
+    completedAt : ?Timestamp__983666785;
+    deadline : Timestamp__983666785;
+    description : Text;
+    id : AssignmentId__365072893;
+    isComplete : Bool;
+    priority : Priority__606731623;
+    subjectId : SubjectId__81137315;
+    title : Text;
+    totalMinutesStudied : Nat
+  };
+type ClassId__691876597 = ClassId__805055241;
+type ClassId__805055241 = Nat;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type PomodoroSession__911223487 =
+  {
+    assignmentId : ?AssignmentId__981710525;
+    completedAt : Timestamp__82610342;
+    durationMinutes : Nat;
+    id : SessionId__64030096;
+    subjectId : ?SubjectId__567922821
+  };
+type Priority__606731623 = {#high; #low; #medium};
+type ScheduledClass__10846100 =
+  {
+    dayOfWeek : Nat;
+    durationMinutes : Nat;
+    id : ClassId__691876597;
+    startTime : Text;
+    subjectId : SubjectId__80536187
+  };
+type SessionId__1052913375 = Nat;
+type SessionId__64030096 = SessionId__1052913375;
+type SubjectId__351346529 = SubjectId__402408784;
+type SubjectId__402408784 = Nat;
+type SubjectId__567922821 = SubjectId__402408784;
+type SubjectId__80536187 = SubjectId__402408784;
+type SubjectId__81137315 = SubjectId__402408784;
+type Subject__69355533 =
+  {color : Text; id : SubjectId__351346529; name : Text};
+type Timestamp__301639476 = Int;
+type Timestamp__82610342 = Timestamp__301639476;
+type Timestamp__983666785 = Timestamp__301639476;
+actor {
+  stable assignments :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Assignment__982879838]];
+      var elementIndex : Nat__490723111
+    };
+  stable nextAssignmentId : [var Nat];
+  stable nextClassId : [var Nat];
+  stable nextSessionId : [var Nat];
+  stable nextSubjectId : [var Nat];
+  stable pomodoroSessions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PomodoroSession__911223487]];
+      var elementIndex : Nat__490723111
+    };
+  stable scheduledClasses :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ScheduledClass__10846100]];
+      var elementIndex : Nat__490723111
+    };
+  stable subjects :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Subject__69355533]];
+      var elementIndex : Nat__490723111
+    }
+};
